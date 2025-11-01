@@ -445,46 +445,46 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/L
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int N; cin >> N;
-
-    if (N == 1) {
-        cout << -1 << endl;
-        return 0;
-    }
-
-    vector<int> Diff(N);
-    for (auto &di: Diff) cin >> di;
-
-    // Take Care !!!!
-    // replacements = sum(cnt - 1) is exactly the number of problems to change so all difficulties become unique.
-
-    unordered_map<int, int> freq;
-    freq.reserve(N*2);
-    for (int x : Diff)
-        freq[x]++;
-
-    int replaced=0;
-    for (auto &[val, cnt]: freq)
-        if (cnt > 1)
-            replaced += (cnt-1);
-
-    if (replaced == 0) cout << -1 << endl;
-    else cout << replaced << endl;
-
-    return 0;
-}
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define All(v) v.begin(),v.end()
+// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//
+// using namespace std;
+//
+//
+// int main()
+// {
+//     shwa
+//
+//     int N; cin >> N;
+//
+//     if (N == 1) {
+//         cout << -1 << endl;
+//         return 0;
+//     }
+//
+//     vector<int> Diff(N);
+//     for (auto &di: Diff) cin >> di;
+//
+//     // Take Care !!!!
+//     // replacements = sum(cnt - 1) is exactly the number of problems to change so all difficulties become unique.
+//
+//     unordered_map<int, int> freq;
+//     freq.reserve(N*2);
+//     for (int x : Diff)
+//         freq[x]++;
+//
+//     int replaced=0;
+//     for (auto &[val, cnt]: freq)
+//         if (cnt > 1)
+//             replaced += (cnt-1);
+//
+//     if (replaced == 0) cout << -1 << endl;
+//     else cout << replaced << endl;
+//
+//     return 0;
+// }
 
 // -------------------------------------------------------------------------------------------
 
@@ -502,6 +502,30 @@ int main()
 // {
 //     shwa
 //
+//     string S; cin >> S;
+//
+//     int N = S.length();
+//
+//     char firstChar=S[0]; bool same = true;
+//     for (int i = 1; i < N; i++)
+//         if (firstChar != S[i])
+//             same = false;
+//
+//     if (same) {
+//         cout << 0 << endl;
+//         return 0;
+//     }
+//
+//     bool palindrome = true;
+//     for (int i = 0; i < N / 2; ++i) {
+//         if (S[i] != S[N - i - 1])
+//             palindrome = false;
+//     }
+//
+//     if (palindrome)
+//         cout << N - 1 << endl;
+//     else
+//         cout << N << endl;
 //
 //     return 0;
 // }
@@ -510,21 +534,42 @@ int main()
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/N
 
-// #include <bits/stdc++.h>
-// #define ll long long
-// #define All(v) v.begin(),v.end()
-// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//
-// using namespace std;
-//
-//
-// int main()
-// {
-//     shwa
-//
-//
-//     return 0;
-// }
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, m, k; cin >> n >> m >> k;
+
+    vector<vector<int>> Grid(n, vector<int>(m));
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < m; ++j)
+            cin >> Grid[i][j];
+
+    // iota -> fills a range with consecutive increasing values.
+    vector<int> rowMap(n), colMap(m);
+    iota(All(rowMap), 0);
+    iota(All(colMap), 0);
+
+    while (k--) {
+        char s; int x, y; cin >> s >> x >> y;
+
+        x--, y--;
+
+        if (s == 'g') cout << Grid[rowMap[x]][colMap[y]] << endl;
+        else if (s == 'r') swap(rowMap[x], rowMap[y]);
+        else if (s == 'c') swap(colMap[x], colMap[y]);
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

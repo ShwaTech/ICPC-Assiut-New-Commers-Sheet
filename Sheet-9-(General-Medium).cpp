@@ -376,75 +376,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/K
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-int main()
-{
-    shwa
-
-    int n, m; cin >> n >> m;
-
-    vector<string> Grid(n);
-
-    for (int i = 0; i < n; ++i)
-        cin >> Grid[i];
-
-    vector<tuple<int, int, int>> Stars;
-
-    vector<string> Draw (n, string(m, '.'));
-
-    for (int i = 0; i < n-1; ++i) {
-        for (int j = 0; j < m-1; ++j) {
-            if (Grid[i][j] == '*') {
-                int size = 0;
-
-                while (true) {
-                    int x1 = i - (size + 1);  // Up
-                    int x2 = i + (size + 1);  // Down
-                    int y1 = j - (size + 1);  // Left
-                    int y2 = j + (size + 1);  // Right
-
-                    if (x1 < 0 || x2 >= n || y1 < 0 || y2 >= m) break;
-                    if (Grid[x1][j] != '*' || Grid[x2][j] != '*' || Grid[i][y1] != '*' || Grid[i][y2] != '*') break;
-
-                    size++;
-                }
-
-                if (size >= 1) {
-                    Stars.push_back({i + 1, j + 1, size});
-                    Draw[i][j] = '*';
-                    for (int s = 1; s <= size; s++) {
-                        Draw[i - s][j] = '*';
-                        Draw[i + s][j] = '*';
-                        Draw[i][j - s] = '*';
-                        Draw[i][j + s] = '*';
-                    }
-                }
-            }
-        }
-    }
-
-    if (Draw != Grid) {
-        cout << -1 << endl;
-        return 0;
-    }
-
-    cout << (int)Stars.size() << endl;
-    for (auto &[a, b, c]: Stars)
-        cout << a << " " << b << " " << c << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/L
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -452,14 +383,108 @@ int main()
 //
 // using namespace std;
 //
-//
 // int main()
 // {
 //     shwa
 //
+//     int n, m; cin >> n >> m;
+//
+//     vector<string> Grid(n);
+//
+//     for (int i = 0; i < n; ++i)
+//         cin >> Grid[i];
+//
+//     vector<tuple<int, int, int>> Stars;
+//
+//     vector<string> Draw (n, string(m, '.'));
+//
+//     for (int i = 0; i < n-1; ++i) {
+//         for (int j = 0; j < m-1; ++j) {
+//             if (Grid[i][j] == '*') {
+//                 int size = 0;
+//
+//                 while (true) {
+//                     int x1 = i - (size + 1);  // Up
+//                     int x2 = i + (size + 1);  // Down
+//                     int y1 = j - (size + 1);  // Left
+//                     int y2 = j + (size + 1);  // Right
+//
+//                     if (x1 < 0 || x2 >= n || y1 < 0 || y2 >= m) break;
+//                     if (Grid[x1][j] != '*' || Grid[x2][j] != '*' || Grid[i][y1] != '*' || Grid[i][y2] != '*') break;
+//
+//                     size++;
+//                 }
+//
+//                 if (size >= 1) {
+//                     Stars.push_back({i + 1, j + 1, size});
+//                     Draw[i][j] = '*';
+//                     for (int s = 1; s <= size; s++) {
+//                         Draw[i - s][j] = '*';
+//                         Draw[i + s][j] = '*';
+//                         Draw[i][j - s] = '*';
+//                         Draw[i][j + s] = '*';
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//
+//     if (Draw != Grid) {
+//         cout << -1 << endl;
+//         return 0;
+//     }
+//
+//     cout << (int)Stars.size() << endl;
+//     for (auto &[a, b, c]: Stars)
+//         cout << a << " " << b << " " << c << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/L
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int N; cin >> N;
+
+    if (N == 1) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    vector<int> Diff(N);
+    for (auto &di: Diff) cin >> di;
+
+    // Take Care !!!!
+    // replacements = sum(cnt - 1) is exactly the number of problems to change so all difficulties become unique.
+
+    unordered_map<int, int> freq;
+    freq.reserve(N*2);
+    for (int x : Diff)
+        freq[x]++;
+
+    int replaced=0;
+    for (auto &[val, cnt]: freq)
+        if (cnt > 1)
+            replaced += (cnt-1);
+
+    if (replaced == 0) cout << -1 << endl;
+    else cout << replaced << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

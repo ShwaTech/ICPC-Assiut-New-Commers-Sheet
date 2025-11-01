@@ -134,6 +134,23 @@
 // {
 //     shwa
 //
+//     int n, b, d; cin >> n >> b >> d;
+//
+//     int waste=0, c=0;
+//
+//     for (int i = 0; i < n; ++i) {
+//         int x; cin >> x;
+//
+//         if (x > b) continue;
+//
+//         waste += x;
+//         if (waste > d) {
+//             c++;
+//             waste = 0;
+//         }
+//     }
+//
+//     cout << c;
 //
 //     return 0;
 // }
@@ -154,6 +171,21 @@
 // {
 //     shwa
 //
+//     char shift;
+//     string typed;
+//     cin >> shift >> typed;
+//
+//     string keyboard = "qwertyuiopasdfghjkl;zxcvbnm,./";
+//     string original = "";
+//
+//     for (char & c : typed) {
+//         int position = keyboard.find(c);
+//
+//         if (shift == 'R') original += keyboard[position-1];
+//         else original += keyboard[position+1];
+//     }
+//
+//     cout << original;
 //
 //     return 0;
 // }
@@ -174,6 +206,18 @@
 // {
 //     shwa
 //
+//     int n, m; cin >> n >> m;
+//
+//     vector<int> fm(m);
+//     for(int i = 0; i < m; ++i) cin >> fm[i];
+//
+//     sort(All(fm));
+//
+//     int mn = INT_MAX;
+//
+//     for (int i = 0; i <= m-n; ++i) mn = min(mn, fm[i+n-1] - fm[i]);
+//
+//     cout << mn;
 //
 //     return 0;
 // }
@@ -185,6 +229,7 @@
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
+// #define RAll(v) v.rbegin(),v.rend()
 // #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 //
 // using namespace std;
@@ -194,6 +239,24 @@
 // {
 //     shwa
 //
+//     int n; cin >> n;
+//
+//     vector<int> a(n);
+//     for (auto &ai: a) cin >> ai;
+//
+//     sort(RAll(a));
+//
+//     int total_sum = accumulate(a.begin(), a.end(), 0);
+//
+//     int taken_sum=0, c=0;
+//
+//     for (auto coin: a) {
+//         taken_sum += coin;
+//         c++;
+//         if (taken_sum > total_sum - taken_sum) break;
+//     }
+//
+//     cout << c;
 //
 //     return 0;
 // }
@@ -214,6 +277,28 @@
 // {
 //     shwa
 //
+//     int n; cin >> n;
+//     string s; cin >> s;
+//     vector<int> x(n+1);
+//     for (int i = 0; i < n; ++i) cin >> x[i];
+//
+//     bool no_answer = true;
+//     int mn = INT_MAX;
+//
+//     for (int i = 0; i <= n; ++i) {
+//         if (s[i] == 'R' && s[i+1] == 'L') {
+//             int Time = (x[i+1] - x[i]) / 2;
+//             mn = min(mn, Time);
+//             no_answer = false;
+//         }
+//     }
+//
+//     if (no_answer) {
+//         cout << -1;
+//         return 0;
+//     }
+//
+//     cout << mn << endl;
 //
 //     return 0;
 // }
@@ -234,6 +319,21 @@
 // {
 //     shwa
 //
+//     int n; cin >> n;
+//     vector<int> cities(n);
+//     for (auto &city: cities) cin >> city;
+//
+//     for (int i = 0; i < n; ++i) {
+//         int mn=INT_MAX;
+//         int curr=cities[i];
+//
+//         if (i > 0) mn = min(mn, abs(curr - cities[i-1]));
+//         if (i < n-1) mn = min(mn, abs(cities[i+1] - curr));
+//
+//         int mx = max(abs(curr - cities[0]), abs(curr - cities[n-1]));
+//
+//         cout << mn << " " << mx << endl;
+//     }
 //
 //     return 0;
 // }
@@ -254,6 +354,20 @@
 // {
 //     shwa
 //
+//     int n; cin >> n;
+//     vector<int> a(n+1);
+//     for (int i = 1; i <= n; ++i) cin >> a[i];
+//
+//     int m; cin >> m;
+//     while (m--) {
+//         int x, y; cin >> x >> y;
+//
+//         if (x > 1) a[x-1] += y-1;
+//         if (x < n) a[x+1] += a[x]-y;
+//         a[x] = 0;
+//     }
+//
+//     for (int i = 1; i <= n; ++i) cout << a[i] << endl;
 //
 //     return 0;
 // }
@@ -262,21 +376,70 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/K
 
-// #include <bits/stdc++.h>
-// #define ll long long
-// #define All(v) v.begin(),v.end()
-// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//
-// using namespace std;
-//
-//
-// int main()
-// {
-//     shwa
-//
-//
-//     return 0;
-// }
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+int main()
+{
+    shwa
+
+    int n, m; cin >> n >> m;
+
+    vector<string> Grid(n);
+
+    for (int i = 0; i < n; ++i)
+        cin >> Grid[i];
+
+    vector<tuple<int, int, int>> Stars;
+
+    vector<string> Draw (n, string(m, '.'));
+
+    for (int i = 0; i < n-1; ++i) {
+        for (int j = 0; j < m-1; ++j) {
+            if (Grid[i][j] == '*') {
+                int size = 0;
+
+                while (true) {
+                    int x1 = i - (size + 1);  // Up
+                    int x2 = i + (size + 1);  // Down
+                    int y1 = j - (size + 1);  // Left
+                    int y2 = j + (size + 1);  // Right
+
+                    if (x1 < 0 || x2 >= n || y1 < 0 || y2 >= m) break;
+                    if (Grid[x1][j] != '*' || Grid[x2][j] != '*' || Grid[i][y1] != '*' || Grid[i][y2] != '*') break;
+
+                    size++;
+                }
+
+                if (size >= 1) {
+                    Stars.push_back({i + 1, j + 1, size});
+                    Draw[i][j] = '*';
+                    for (int s = 1; s <= size; s++) {
+                        Draw[i - s][j] = '*';
+                        Draw[i + s][j] = '*';
+                        Draw[i][j - s] = '*';
+                        Draw[i][j + s] = '*';
+                    }
+                }
+            }
+        }
+    }
+
+    if (Draw != Grid) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    cout << (int)Stars.size() << endl;
+    for (auto &[a, b, c]: Stars)
+        cout << a << " " << b << " " << c << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

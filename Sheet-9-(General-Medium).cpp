@@ -672,63 +672,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/R
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    string s, extra;
-    cin >> s >> extra;
-
-    int pos = s.find('|');
-    string left = s.substr(0, pos);
-    string right = s.substr(pos + 1);
-
-    int L = left.size(), R = right.size();
-    int remain = extra.size();
-
-    int diff = abs(L - R);
-
-    // Not enough weights to balance == Already Fine
-    if (diff > remain) {
-        cout << "Impossible\n";
-        return 0;
-    }
-
-    // Use part of extra to equalize lengths
-    int use = diff;
-    string rest = extra.substr(use);
-
-    if (L < R) left += extra.substr(0, use);
-    else right += extra.substr(0, use);
-
-    // After equalizing, remaining letters must be even
-    if (rest.size() % 2 != 0) {
-        cout << "Impossible\n";
-        return 0;
-    }
-
-    // Split remaining equally
-    int half = rest.size() / 2;
-    left += rest.substr(0, half);
-    right += rest.substr(half);
-
-    cout << left << '|' << right << "\n";
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/S
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -741,9 +684,81 @@ int main()
 // {
 //     shwa
 //
+//     string s, extra;
+//     cin >> s >> extra;
+//
+//     int pos = s.find('|');
+//     string left = s.substr(0, pos);
+//     string right = s.substr(pos + 1);
+//
+//     int L = left.size(), R = right.size();
+//     int remain = extra.size();
+//
+//     int diff = abs(L - R);
+//
+//     // Not enough weights to balance == Already Fine
+//     if (diff > remain) {
+//         cout << "Impossible\n";
+//         return 0;
+//     }
+//
+//     // Use part of extra to equalize lengths
+//     int use = diff;
+//     string rest = extra.substr(use);
+//
+//     if (L < R) left += extra.substr(0, use);
+//     else right += extra.substr(0, use);
+//
+//     // After equalizing, remaining letters must be even
+//     if (rest.size() % 2 != 0) {
+//         cout << "Impossible\n";
+//         return 0;
+//     }
+//
+//     // Split remaining equally
+//     int half = rest.size() / 2;
+//     left += rest.substr(0, half);
+//     right += rest.substr(half);
+//
+//     cout << left << '|' << right << "\n";
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/S
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n; cin >> n;
+
+    vector<ll> a(n);
+    for (auto &ai: a) cin >> ai;
+
+    sort(All(a));
+
+    for (int i = 0; i < n - 2; ++i) {
+        if (a[i] + a[i+1] > a[i+2]) {
+            cout << "YES\n";
+            return 0;
+        }
+    }
+
+    cout << "NO\n";
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

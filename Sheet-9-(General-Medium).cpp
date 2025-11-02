@@ -534,47 +534,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/N
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n, m, k; cin >> n >> m >> k;
-
-    vector<vector<int>> Grid(n, vector<int>(m));
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < m; ++j)
-            cin >> Grid[i][j];
-
-    // iota -> fills a range with consecutive increasing values.
-    vector<int> rowMap(n), colMap(m);
-    iota(All(rowMap), 0);
-    iota(All(colMap), 0);
-
-    while (k--) {
-        char s; int x, y; cin >> s >> x >> y;
-
-        x--, y--;
-
-        if (s == 'g') cout << Grid[rowMap[x]][colMap[y]] << endl;
-        else if (s == 'r') swap(rowMap[x], rowMap[y]);
-        else if (s == 'c') swap(colMap[x], colMap[y]);
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/O
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -587,9 +546,64 @@ int main()
 // {
 //     shwa
 //
+//     int n, m, k; cin >> n >> m >> k;
+//
+//     vector<vector<int>> Grid(n, vector<int>(m));
+//     for (int i = 0; i < n; ++i)
+//         for (int j = 0; j < m; ++j)
+//             cin >> Grid[i][j];
+//
+//     // iota -> fills a range with consecutive increasing values.
+//     vector<int> rowMap(n), colMap(m);
+//     iota(All(rowMap), 0);
+//     iota(All(colMap), 0);
+//
+//     while (k--) {
+//         char s; int x, y; cin >> s >> x >> y;
+//
+//         x--, y--;
+//
+//         if (s == 'g') cout << Grid[rowMap[x]][colMap[y]] << endl;
+//         else if (s == 'r') swap(rowMap[x], rowMap[y]);
+//         else if (s == 'c') swap(colMap[x], colMap[y]);
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/O
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int N; cin >> N;
+
+    vector<int> A(N);
+    for (auto &Ai: A) cin >> Ai;
+
+    // no two equal numbers are next to each other
+    // if and only if the most frequent number doesn’t appear too many times.
+    // Possible => mx <= (n + 1) / 2 Otherwise => Impossible
+
+    int mx=0;
+    for (int i = 0; i < N; ++i)
+        mx = max(mx, (int)count(All(A), A[i]));
+
+    cout << (mx <= (N+1)/2 ? "YES" : "NO") << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

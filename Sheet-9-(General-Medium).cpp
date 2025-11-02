@@ -575,40 +575,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/O
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int N; cin >> N;
-
-    vector<int> A(N);
-    for (auto &Ai: A) cin >> Ai;
-
-    // no two equal numbers are next to each other
-    // if and only if the most frequent number doesn’t appear too many times.
-    // Possible => mx <= (n + 1) / 2 Otherwise => Impossible
-
-    int mx=0;
-    for (int i = 0; i < N; ++i)
-        mx = max(mx, (int)count(All(A), A[i]));
-
-    cout << (mx <= (N+1)/2 ? "YES" : "NO") << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/P
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -621,9 +587,51 @@ int main()
 // {
 //     shwa
 //
+//     int N; cin >> N;
+//
+//     vector<int> A(N);
+//     for (auto &Ai: A) cin >> Ai;
+//
+//     // no two equal numbers are next to each other
+//     // if and only if the most frequent number doesn’t appear too many times.
+//     // Possible => mx <= (n + 1) / 2 Otherwise => Impossible
+//
+//     int mx=0;
+//     for (int i = 0; i < N; ++i)
+//         mx = max(mx, (int)count(All(A), A[i]));
+//
+//     cout << (mx <= (N+1)/2 ? "YES" : "NO") << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/P
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    ll X; cin >> X;
+
+    // Just Use Pin and Paper, and You Will Reach it.
+
+    if (X & 1)
+        cout << -(X + 1) / 2 << endl;
+    else
+        cout << X / 2 << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

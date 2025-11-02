@@ -609,34 +609,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/P
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    ll X; cin >> X;
-
-    // Just Use Pin and Paper, and You Will Reach it.
-
-    if (X & 1)
-        cout << -(X + 1) / 2 << endl;
-    else
-        cout << X / 2 << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Q
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -649,9 +621,52 @@ int main()
 // {
 //     shwa
 //
+//     ll X; cin >> X;
+//
+//     // Just Use Pin and Paper, and You Will Reach it.
+//
+//     if (X & 1)
+//         cout << -(X + 1) / 2 << endl;
+//     else
+//         cout << X / 2 << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Q
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int N, M; cin >> N >> M;
+
+    int mn=0;
+
+    if (N % 2 == 0) mn = N/2; // Each Step is With Value 2
+    else mn = (N/2)+1;
+
+    for (int i = mn; i <= N; ++i) {
+        if (i % M == 0) {
+            cout << i << endl;
+            return 0;
+        }
+    }
+
+    cout << -1 << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

@@ -637,41 +637,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Q
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int N, M; cin >> N >> M;
-
-    int mn=0;
-
-    if (N % 2 == 0) mn = N/2; // Each Step is With Value 2
-    else mn = (N/2)+1;
-
-    for (int i = mn; i <= N; ++i) {
-        if (i % M == 0) {
-            cout << i << endl;
-            return 0;
-        }
-    }
-
-    cout << -1 << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/R
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -684,9 +649,81 @@ int main()
 // {
 //     shwa
 //
+//     int N, M; cin >> N >> M;
+//
+//     int mn=0;
+//
+//     if (N % 2 == 0) mn = N/2; // Each Step is With Value 2
+//     else mn = (N/2)+1;
+//
+//     for (int i = mn; i <= N; ++i) {
+//         if (i % M == 0) {
+//             cout << i << endl;
+//             return 0;
+//         }
+//     }
+//
+//     cout << -1 << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/R
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    string s, extra;
+    cin >> s >> extra;
+
+    int pos = s.find('|');
+    string left = s.substr(0, pos);
+    string right = s.substr(pos + 1);
+
+    int L = left.size(), R = right.size();
+    int remain = extra.size();
+
+    int diff = abs(L - R);
+
+    // Not enough weights to balance == Already Fine
+    if (diff > remain) {
+        cout << "Impossible\n";
+        return 0;
+    }
+
+    // Use part of extra to equalize lengths
+    int use = diff;
+    string rest = extra.substr(use);
+
+    if (L < R) left += extra.substr(0, use);
+    else right += extra.substr(0, use);
+
+    // After equalizing, remaining letters must be even
+    if (rest.size() % 2 != 0) {
+        cout << "Impossible\n";
+        return 0;
+    }
+
+    // Split remaining equally
+    int half = rest.size() / 2;
+    left += rest.substr(0, half);
+    right += rest.substr(half);
+
+    cout << left << '|' << right << "\n";
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

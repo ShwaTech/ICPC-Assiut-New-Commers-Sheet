@@ -798,24 +798,71 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/U
 
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define All(v) v.begin(),v.end()
+// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//
+// using namespace std;
+//
+// // 💡 What does it mean to have exactly 3 divisors?
+// // If a number t has exactly 3 distinct positive divisors,
+// // then those divisors must be:
+// //      1, p, p²
+// // for some prime number p.
+// // Because:
+// // 1 divides everything
+// // p divides p²
+// // and p² divides itself
+// // ✅ Total = 3 divisors
+// // So a T-prime number = square of a prime.
+//
+//
+// int main()
+// {
+//     shwa
+//
+//     int n; cin >> n;
+//
+//     vector<ll> x(n);
+//     for (auto &xi: x) cin >> xi;
+//
+//     const int MAX=1e6;  // sqrt(1e12)
+//     vector<bool> sieve_primes(MAX+1, true);
+//     sieve_primes[0] = sieve_primes[1] = false;
+//
+//     // Sieve of Eratosthenes
+//     for (int i = 2; i * i  <= MAX; ++i) {
+//         if (sieve_primes[i]) {
+//             for (int j = i*i; j <= MAX; j += i) {
+//                 sieve_primes[j] = false;
+//             }
+//         }
+//     }
+//
+//     unordered_set<ll> T_Primes;
+//     for (int i = 2; i <= MAX; ++i)
+//         if (sieve_primes[i])
+//             T_Primes.insert(1LL * i * i);
+//
+//     for (auto xi: x) {
+//         if (T_Primes.count(xi)) cout << "YES\n";
+//         else cout << "NO\n";
+//     }
+//
+//     return 0;
+// }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/V
+
 #include <bits/stdc++.h>
 #define ll long long
 #define All(v) v.begin(),v.end()
 #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 
 using namespace std;
-
-// 💡 What does it mean to have exactly 3 divisors?
-// If a number t has exactly 3 distinct positive divisors,
-// then those divisors must be:
-//      1, p, p²
-// for some prime number p.
-// Because:
-// 1 divides everything
-// p divides p²
-// and p² divides itself
-// ✅ Total = 3 divisors
-// So a T-prime number = square of a prime.
 
 
 int main()
@@ -824,54 +871,35 @@ int main()
 
     int n; cin >> n;
 
-    vector<ll> x(n);
-    for (auto &xi: x) cin >> xi;
+    vector<int> a(n), b(n);
+    for (auto &ai: a) cin >> ai;
 
-    const int MAX=1e6;  // sqrt(1e12)
-    vector<bool> sieve_primes(MAX+1, true);
-    sieve_primes[0] = sieve_primes[1] = false;
+    ll sum=0;
 
-    // Sieve of Eratosthenes
-    for (int i = 2; i * i  <= MAX; ++i) {
-        if (sieve_primes[i]) {
-            for (int j = i*i; j <= MAX; j += i) {
-                sieve_primes[j] = false;
-            }
+    for (int i = 0; i < n; ++i) {
+        if (a[i] % 2 == 0) b[i] = a[i] / 2;
+        else {
+            if (a[i] > 0)
+                b[i] = a[i] / 2;      // Floor For Positive Numbers
+            else
+                b[i] = a[i] / 2 - 1;  // Floor For Negative Numbers
+        }
+        sum += b[i];
+    }
+
+    // Compute Ceil if sum is less than zero
+    for (int i = 0; sum < 0 && i < n; ++i) {
+        if (a[i] & 1) {
+            b[i]++;
+            sum++;
         }
     }
 
-    unordered_set<ll> T_Primes;
-    for (int i = 2; i <= MAX; ++i)
-        if (sieve_primes[i])
-            T_Primes.insert(1LL * i * i);
-
-    for (auto xi: x) {
-        if (T_Primes.count(xi)) cout << "YES\n";
-        else cout << "NO\n";
-    }
+    for (auto &bi: b)
+        cout << bi << endl;
 
     return 0;
 }
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/V
-
-// #include <bits/stdc++.h>
-// #define ll long long
-// #define All(v) v.begin(),v.end()
-// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//
-// using namespace std;
-//
-//
-// int main()
-// {
-//     shwa
-//
-//
-//     return 0;
-// }
 
 // -------------------------------------------------------------------------------------------
 

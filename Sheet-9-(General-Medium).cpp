@@ -857,54 +857,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/V
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n; cin >> n;
-
-    vector<int> a(n), b(n);
-    for (auto &ai: a) cin >> ai;
-
-    ll sum=0;
-
-    for (int i = 0; i < n; ++i) {
-        if (a[i] % 2 == 0) b[i] = a[i] / 2;
-        else {
-            if (a[i] > 0)
-                b[i] = a[i] / 2;      // Floor For Positive Numbers
-            else
-                b[i] = a[i] / 2 - 1;  // Floor For Negative Numbers
-        }
-        sum += b[i];
-    }
-
-    // Compute Ceil if sum is less than zero
-    for (int i = 0; sum < 0 && i < n; ++i) {
-        if (a[i] & 1) {
-            b[i]++;
-            sum++;
-        }
-    }
-
-    for (auto &bi: b)
-        cout << bi << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/W
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -917,9 +869,82 @@ int main()
 // {
 //     shwa
 //
+//     int n; cin >> n;
+//
+//     vector<int> a(n), b(n);
+//     for (auto &ai: a) cin >> ai;
+//
+//     ll sum=0;
+//
+//     for (int i = 0; i < n; ++i) {
+//         if (a[i] % 2 == 0) b[i] = a[i] / 2;
+//         else {
+//             if (a[i] > 0)
+//                 b[i] = a[i] / 2;      // Floor For Positive Numbers
+//             else
+//                 b[i] = a[i] / 2 - 1;  // Floor For Negative Numbers
+//         }
+//         sum += b[i];
+//     }
+//
+//     // Compute Ceil if sum is less than zero
+//     for (int i = 0; sum < 0 && i < n; ++i) {
+//         if (a[i] & 1) {
+//             b[i]++;
+//             sum++;
+//         }
+//     }
+//
+//     for (auto &bi: b)
+//         cout << bi << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/W
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n;
+    cin >> n;
+
+    if (n == 1) {
+        string s; cin >> s;
+        cout << s << endl;
+        return 0;
+    }
+
+    map<string, int> freq;
+    for (int i = 0; i < n; ++i) {
+        string s; cin >> s;
+
+        freq[s]++;
+    }
+
+    int mx = 0; string res;
+    for (auto &[val, cnt]: freq) {
+        if (mx < cnt) {
+            mx = cnt;
+            res = val;
+        }
+    }
+
+    cout << res << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

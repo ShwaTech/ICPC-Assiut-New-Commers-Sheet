@@ -905,51 +905,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/W
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n;
-    cin >> n;
-
-    if (n == 1) {
-        string s; cin >> s;
-        cout << s << endl;
-        return 0;
-    }
-
-    map<string, int> freq;
-    for (int i = 0; i < n; ++i) {
-        string s; cin >> s;
-
-        freq[s]++;
-    }
-
-    int mx = 0; string res;
-    for (auto &[val, cnt]: freq) {
-        if (mx < cnt) {
-            mx = cnt;
-            res = val;
-        }
-    }
-
-    cout << res << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/X
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -962,9 +917,70 @@ int main()
 // {
 //     shwa
 //
+//     int n;
+//     cin >> n;
+//
+//     if (n == 1) {
+//         string s; cin >> s;
+//         cout << s << endl;
+//         return 0;
+//     }
+//
+//     map<string, int> freq;
+//     for (int i = 0; i < n; ++i) {
+//         string s; cin >> s;
+//
+//         freq[s]++;
+//     }
+//
+//     int mx = 0; string res;
+//     for (auto &[val, cnt]: freq) {
+//         if (mx < cnt) {
+//             mx = cnt;
+//             res = val;
+//         }
+//     }
+//
+//     cout << res << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/X
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, k; cin >> n >> k;
+
+    int sz = 2 * n + 1;
+
+    vector<int> r(sz);
+    for (auto &ri: r) cin >> ri;
+
+    for (int i = 1; i < sz; ++i) {
+        if (r[i-1]+1 <  r[i] && r[i] > r[i+1]+1) {
+            r[i]--;
+            k--;
+            if (k == 0) break;
+        }
+    }
+
+    for (auto &ri: r) cout << ri << " ";
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

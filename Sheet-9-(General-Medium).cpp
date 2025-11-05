@@ -950,6 +950,42 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/X
 
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define All(v) v.begin(),v.end()
+// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//
+// using namespace std;
+//
+//
+// int main()
+// {
+//     shwa
+//
+//     int n, k; cin >> n >> k;
+//
+//     int sz = 2 * n + 1;
+//
+//     vector<int> r(sz);
+//     for (auto &ri: r) cin >> ri;
+//
+//     for (int i = 1; i < sz; ++i) {
+//         if (r[i-1]+1 <  r[i] && r[i] > r[i+1]+1) {
+//             r[i]--;
+//             k--;
+//             if (k == 0) break;
+//         }
+//     }
+//
+//     for (auto &ri: r) cout << ri << " ";
+//
+//     return 0;
+// }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Y
+
 #include <bits/stdc++.h>
 #define ll long long
 #define All(v) v.begin(),v.end()
@@ -964,43 +1000,22 @@ int main()
 
     int n, k; cin >> n >> k;
 
-    int sz = 2 * n + 1;
-
-    vector<int> r(sz);
-    for (auto &ri: r) cin >> ri;
-
-    for (int i = 1; i < sz; ++i) {
-        if (r[i-1]+1 <  r[i] && r[i] > r[i+1]+1) {
-            r[i]--;
-            k--;
-            if (k == 0) break;
-        }
+    ll whole=0;
+    for (int i = 0; i < n; ++i) {
+        int r, l; cin >> r >> l;
+        whole += (l - r + 1);
     }
 
-    for (auto &ri: r) cout << ri << " ";
+    whole %= k;
+
+    if (whole == 0) {
+        cout << 0;
+    } else {
+        cout << k - whole;
+    }
 
     return 0;
 }
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Y
-
-// #include <bits/stdc++.h>
-// #define ll long long
-// #define All(v) v.begin(),v.end()
-// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//
-// using namespace std;
-//
-//
-// int main()
-// {
-//     shwa
-//
-//
-//     return 0;
-// }
 
 // -------------------------------------------------------------------------------------------
 

@@ -1,47 +1,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/A
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    string S; cin >> S;
-
-    int N = S.size();
-    int L = 0, R = N-1;
-
-    while (L <= R) {
-        if (S[L] == S[R]) {
-            if (S[L] == '?') S[L] = S[R] = 'a';
-            L++; R--;
-        } else {
-            if (S[L] == '?') S[L] = S[R];
-            else if (S[R] == '?') S[R] = S[L];
-            else {
-                cout << -1 << endl;
-                return 0;
-            }
-            L++; R--;
-        }
-    }
-
-    cout << S << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/B
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -54,10 +13,64 @@ int main()
 // {
 //     shwa
 //
+//     string S; cin >> S;
 //
+//     int N = S.size();
+//     int L = 0, R = N-1;
+//
+//     while (L <= R) {
+//         if (S[L] == S[R]) {
+//             if (S[L] == '?') S[L] = S[R] = 'a';
+//             L++; R--;
+//         } else {
+//             if (S[L] == '?') S[L] = S[R];
+//             else if (S[R] == '?') S[R] = S[L];
+//             else {
+//                 cout << -1 << endl;
+//                 return 0;
+//             }
+//             L++; R--;
+//         }
+//     }
+//
+//     cout << S << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/B
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+int main()
+{
+    shwa
+
+    string S, T; cin >> S >> T;
+
+    int N = S.size(), M = T.size();
+
+    if (S == T) {
+        cout << 0;
+        return 0;
+    }
+
+    int i=1, C=0;
+    while (S[N-i] == T[M-i]) {
+        i++, C++;
+    }
+
+    cout << (N - C) + (M - C) << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

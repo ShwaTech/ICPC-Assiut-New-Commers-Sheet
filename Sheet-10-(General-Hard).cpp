@@ -110,53 +110,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/D
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    string s1, s2; cin >> s1 >> s2;
-
-    int n = s1.size(), m = s2.size();
-
-    if (n != m) {
-        cout << "NO\n";
-        return 0;
-    }
-
-    vector<int> mismatch;
-    for (int i = 0; i < n; i++) {
-        if (s1[i] != s2[i]) {
-            mismatch.push_back(i);
-        }
-    }
-
-    if (mismatch.size() == 2) {
-        // Only 2 Mismatches -> Just Swap
-        swap(s1[mismatch[0]], s1[mismatch[1]]);
-        cout << (s1 == s2 ? "YES\n" : "NO\n");
-    } else if (mismatch.size() == 0) {
-        // Found Some Duplicates
-        set<char> st (All(s1));
-        cout << (st.size() < s1.size() ? "YES\n" : "NO\n");
-    } else {
-        cout << "NO\n";
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/E
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -169,10 +122,77 @@ int main()
 // {
 //     shwa
 //
+//     string s1, s2; cin >> s1 >> s2;
 //
+//     int n = s1.size(), m = s2.size();
+//
+//     if (n != m) {
+//         cout << "NO\n";
+//         return 0;
+//     }
+//
+//     vector<int> mismatch;
+//     for (int i = 0; i < n; i++) {
+//         if (s1[i] != s2[i]) {
+//             mismatch.push_back(i);
+//         }
+//     }
+//
+//     if (mismatch.size() == 2) {
+//         // Only 2 Mismatches -> Just Swap
+//         swap(s1[mismatch[0]], s1[mismatch[1]]);
+//         cout << (s1 == s2 ? "YES\n" : "NO\n");
+//     } else if (mismatch.size() == 0) {
+//         // Found Some Duplicates
+//         set<char> st (All(s1));
+//         cout << (st.size() < s1.size() ? "YES\n" : "NO\n");
+//     } else {
+//         cout << "NO\n";
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/E
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int T; cin >> T;
+    while(T--) {
+        ll n; ll s; cin >> n >> s;
+
+        vector<ll> ans;
+        for (ll i = n; i >= 1; --i) {
+            if (s == 0) { break; }
+            if (i <= s) {
+                ans.push_back(i);
+                s -= i;
+            }
+        }
+
+        if (s != 0) {
+            cout << -1 << endl;
+        } else {
+            cout << ans.size();
+            for (auto &a : ans) cout << " " << a;
+            cout << endl;
+        }
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

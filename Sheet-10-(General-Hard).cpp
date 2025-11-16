@@ -42,40 +42,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/B
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-int main()
-{
-    shwa
-
-    string S, T; cin >> S >> T;
-
-    int N = S.size(), M = T.size();
-
-    if (S == T) {
-        cout << 0;
-        return 0;
-    }
-
-    int i=1, C=0;
-    while (S[N-i] == T[M-i]) {
-        i++, C++;
-    }
-
-    cout << (N - C) + (M - C) << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/C
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -83,15 +49,62 @@ int main()
 //
 // using namespace std;
 //
-//
 // int main()
 // {
 //     shwa
 //
+//     string S, T; cin >> S >> T;
 //
+//     int N = S.size(), M = T.size();
+//
+//     if (S == T) {
+//         cout << 0;
+//         return 0;
+//     }
+//
+//     int i=1, C=0;
+//     while (S[N-i] == T[M-i]) {
+//         i++, C++;
+//     }
+//
+//     cout << (N - C) + (M - C) << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/C
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, m; cin >> n >> m;
+
+    vector<int> a(n), b(m);
+
+    for (auto &ai : a) cin >> ai;
+    for (auto &bi : b) cin >> bi;
+
+    ll sum_a = 0, sum_b = 0;
+
+    for (auto ai : a) sum_a += ai;
+    for (auto bi : b) sum_b += bi;
+
+    if (sum_a == sum_b) cout << "Yes" << endl;
+    else cout << "No" << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

@@ -1021,28 +1021,28 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223207/problem/Z
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    ll n1, d1, n2, d2; char c1, c2;
-    cin >> n1 >> c1 >> d1;
-    cin >> n2 >> c2 >> d2;
-
-    ll rn = lcm(n1, n2);
-    ll rd = __gcd(d1, d2);
-
-    cout << rn << '/' << rd << endl;
-
-    return 0;
-}
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define All(v) v.begin(),v.end()
+// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//
+// using namespace std;
+//
+//
+// int main()
+// {
+//     shwa
+//
+//     ll n1, d1, n2, d2; char c1, c2;
+//     cin >> n1 >> c1 >> d1;
+//     cin >> n2 >> c2 >> d2;
+//
+//     ll rn = lcm(n1, n2);
+//     ll rd = __gcd(d1, d2);
+//
+//     cout << rn << '/' << rd << endl;
+//
+//     return 0;
+// }
 
 // -------------------------------------------------------------------------------------------

@@ -157,47 +157,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/E
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int T; cin >> T;
-    while(T--) {
-        ll n; ll s; cin >> n >> s;
-
-        vector<ll> ans;
-        for (ll i = n; i >= 1; --i) {
-            if (s == 0) { break; }
-            if (i <= s) {
-                ans.push_back(i);
-                s -= i;
-            }
-        }
-
-        if (s != 0) {
-            cout << -1 << endl;
-        } else {
-            cout << ans.size();
-            for (auto &a : ans) cout << " " << a;
-            cout << endl;
-        }
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/F
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -210,10 +169,75 @@ int main()
 // {
 //     shwa
 //
+//     int T; cin >> T;
+//     while(T--) {
+//         ll n; ll s; cin >> n >> s;
 //
+//         vector<ll> ans;
+//         for (ll i = n; i >= 1; --i) {
+//             if (s == 0) { break; }
+//             if (i <= s) {
+//                 ans.push_back(i);
+//                 s -= i;
+//             }
+//         }
+//
+//         if (s != 0) {
+//             cout << -1 << endl;
+//         } else {
+//             cout << ans.size();
+//             for (auto &a : ans) cout << " " << a;
+//             cout << endl;
+//         }
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/F
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, m; cin >> n >> m;
+
+    vector<string> gradebook(n);
+
+    for (int i = 0; i < n; ++i)
+        cin >> gradebook[i];
+
+    vector<bool> successful(n, false);
+
+    for (int col = 0; col < m; ++col) {
+        char mx='0';
+
+        for (int row = 0; row < n; ++row) {
+            mx = max(mx, gradebook[row][col]);
+        }
+
+        for (int row = 0; row < n; ++row) {
+            if (gradebook[row][col] == mx) successful[row] = true;
+        }
+    }
+
+    int c=0;
+    for (bool success: successful) if (success) c++;
+
+    cout << c << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

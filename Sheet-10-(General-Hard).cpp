@@ -243,51 +243,9 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/G
 
-#include <bits/stdc++.h>
-#define ll long long
-#define ld long double
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    ll n; cin >> n;
-
-    vector<ll> a(n);
-    for (auto &ai: a) {
-        cin >> ai;
-    }
-
-    // (Find That Smallest x) such that:
-    // x^n > product
-    // log(x^n) > log(product)
-    // n * log(x) > log(p1 * p2 * p3 * ... * pn)
-    // n * log(x) > log(p1) + log(p2) + log(p3) + ... + log(pn)
-    // log(x) > [log(p1) + log(p2) + log(p3) + ... + log(pn)] / n      // add base 10
-    // 10 ^ log(x) > 10 ^ ([log(p1) + log(p2) + log(p3) + ... + log(pn)] / n)
-    // x > 10 ^ ([log(p1) + log(p2) + log(p3) + ... + log(pn)] / n)
-
-    ld log_sum=0;
-    for (ll i = 0; i < n; ++i) log_sum += log10(a[i]);
-
-    ld right_side = powl(10, log_sum/n);
-
-    cout << (ll)right_side + 1 << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/H
-
 // #include <bits/stdc++.h>
 // #define ll long long
+// #define ld long double
 // #define All(v) v.begin(),v.end()
 // #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 //
@@ -298,10 +256,64 @@ int main()
 // {
 //     shwa
 //
+//     ll n; cin >> n;
 //
+//     vector<ll> a(n);
+//     for (auto &ai: a) {
+//         cin >> ai;
+//     }
+//
+//     // (Find That Smallest x) such that:
+//     // x^n > product
+//     // log(x^n) > log(product)
+//     // n * log(x) > log(p1 * p2 * p3 * ... * pn)
+//     // n * log(x) > log(p1) + log(p2) + log(p3) + ... + log(pn)
+//     // log(x) > [log(p1) + log(p2) + log(p3) + ... + log(pn)] / n      // add base 10
+//     // 10 ^ log(x) > 10 ^ ([log(p1) + log(p2) + log(p3) + ... + log(pn)] / n)
+//     // x > 10 ^ ([log(p1) + log(p2) + log(p3) + ... + log(pn)] / n)
+//
+//     ld log_sum=0;
+//     for (ll i = 0; i < n; ++i) log_sum += log10(a[i]);
+//
+//     ld right_side = powl(10, log_sum/n);
+//
+//     cout << (ll)right_side + 1 << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/H
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    string x; cin >> x;
+
+    for (int i = 0; i < x.size(); ++i) {
+        int di = x[i] - '0';
+        int inv = 9 - di;
+
+        if (inv < di) {
+            if (i == 0 && inv == 0) { continue; }
+            x[i] = inv + '0';
+        }
+    }
+
+    cout << x << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

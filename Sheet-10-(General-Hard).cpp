@@ -286,39 +286,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/H
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    string x; cin >> x;
-
-    for (int i = 0; i < x.size(); ++i) {
-        int di = x[i] - '0';
-        int inv = 9 - di;
-
-        if (inv < di) {
-            if (i == 0 && inv == 0) { continue; }
-            x[i] = inv + '0';
-        }
-    }
-
-    cout << x << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/I
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -331,10 +298,67 @@ int main()
 // {
 //     shwa
 //
+//     string x; cin >> x;
 //
+//     for (int i = 0; i < x.size(); ++i) {
+//         int di = x[i] - '0';
+//         int inv = 9 - di;
+//
+//         if (inv < di) {
+//             if (i == 0 && inv == 0) { continue; }
+//             x[i] = inv + '0';
+//         }
+//     }
+//
+//     cout << x << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/I
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    map<char, int> score;
+    score['A'] = score['B'] = score['C'] = 0;
+
+    for (int i = 0; i < 3; ++i) {
+        string relation; cin >> relation;
+
+        if (relation[1] == '>') score[relation[0]]++;
+        else score[relation[2]]++;
+    }
+
+    vector<pair<int, char>> results;
+
+    for (auto &s: score) {
+        results.push_back({s.second, s.first});
+    }
+
+    sort(All(results));
+
+    if (results[0].first == results[1].first || results[1].first == results[2].first) {
+        cout << "Impossible\n";
+    } else {
+        for (auto &r: results) {
+            cout << r.second;
+        }
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

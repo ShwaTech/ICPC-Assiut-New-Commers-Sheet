@@ -319,51 +319,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/I
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    map<char, int> score;
-    score['A'] = score['B'] = score['C'] = 0;
-
-    for (int i = 0; i < 3; ++i) {
-        string relation; cin >> relation;
-
-        if (relation[1] == '>') score[relation[0]]++;
-        else score[relation[2]]++;
-    }
-
-    vector<pair<int, char>> results;
-
-    for (auto &s: score) {
-        results.push_back({s.second, s.first});
-    }
-
-    sort(All(results));
-
-    if (results[0].first == results[1].first || results[1].first == results[2].first) {
-        cout << "Impossible\n";
-    } else {
-        for (auto &r: results) {
-            cout << r.second;
-        }
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/J
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -376,10 +331,74 @@ int main()
 // {
 //     shwa
 //
+//     map<char, int> score;
+//     score['A'] = score['B'] = score['C'] = 0;
 //
+//     for (int i = 0; i < 3; ++i) {
+//         string relation; cin >> relation;
+//
+//         if (relation[1] == '>') score[relation[0]]++;
+//         else score[relation[2]]++;
+//     }
+//
+//     vector<pair<int, char>> results;
+//
+//     for (auto &s: score) {
+//         results.push_back({s.second, s.first});
+//     }
+//
+//     sort(All(results));
+//
+//     if (results[0].first == results[1].first || results[1].first == results[2].first) {
+//         cout << "Impossible\n";
+//     } else {
+//         for (auto &r: results) {
+//             cout << r.second;
+//         }
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/J
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int r1, r2, c1, c2, d1, d2;
+    cin >> r1 >> r2 >> c1 >> c2 >> d1 >> d2;
+
+    for (int a = 1; a <= 9; ++a) {
+        for (int b = 1; b <= 9; ++b) {
+            for (int c = 1; c <= 9; ++c) {
+                for (int d = 1; d <= 9; ++d) {
+                    if (a != b && a != c && a != d && b != c && b != d && c != d) {
+                        if (a+b == r1 && c+d == r2 && a+c == c1 && b+d == c2 && a+d == d1 && b+c == d2) {
+                            cout << a << " " << b << endl;
+                            cout << c << " " << d << endl;
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cout << -1 << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

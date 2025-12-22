@@ -404,44 +404,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/K
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n; cin >> n;
-
-    vector<int> freq(n+1);
-
-    int mx = n;
-
-    for (int i = 0; i < n; i++) {
-        int x; cin >> x;
-
-        freq[x] = 1;
-
-        while (freq[mx]) {
-            cout << mx << " ";
-            mx--;
-        }
-
-        cout << endl;
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/L
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -454,10 +416,60 @@ int main()
 // {
 //     shwa
 //
+//     int n; cin >> n;
 //
+//     vector<int> freq(n+1);
+//
+//     int mx = n;
+//
+//     for (int i = 0; i < n; i++) {
+//         int x; cin >> x;
+//
+//         freq[x] = 1;
+//
+//         while (freq[mx]) {
+//             cout << mx << " ";
+//             mx--;
+//         }
+//
+//         cout << endl;
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/L
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    double L, S1, S2; cin >> L >> S1 >> S2;
+
+    int n; cin >> n;
+    for (int i = 0; i < n; i++) {
+        double q; cin >> q;
+
+        // Geometry Rule:
+        //// For Calculating Time for 2 Squares - Given Areas and Overlap between them
+        double time = sqrt(2) * (L - sqrt(q)) / (S2 - S1);
+
+        cout << fixed << setprecision(6) << abs(time) << endl;
+    }
+
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

@@ -475,73 +475,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/M
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    string S; cin >> S;
-    int K; cin >> K;
-
-    int N = S.size();
-
-    // Count Real Letters and Special Operators
-    int letters=0, stars=0, questions=0;
-    for (char C: S) {
-        if (C == '*') stars++;
-        else if (C == '?') questions++;
-        else letters++;
-    }
-
-    int minLen = letters - stars - questions;
-    int maxLen = (stars > 0 ? INT_MAX : letters); // Because * Can Make The Letter Repeated ??
-
-    // Out Of The Problem Scope
-    if (K < minLen || K > maxLen) {
-        cout << "Impossible\n";
-        return 0;
-    }
-
-    string result;
-    int extra = K - minLen; // how many chars we still need to add
-
-    for (int i = 0; i < N; ++i) {
-        if (S[i] == '?' || S[i] == '*') continue;
-
-        if (i+1 < N && (S[i+1] == '?' || S[i+1] == '*')) {
-            if (extra) {
-                result += S[i];
-                extra--;
-
-                // As The * Can Make The Letter be Repeated
-                if (N && S[i+1] == '*') {
-                    while (extra) {
-                        result += S[i];
-                        extra--;
-                    }
-                }
-            }
-        } else {
-            result += S[i];
-        }
-    }
-
-    cout << result << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/N
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -554,10 +487,79 @@ int main()
 // {
 //     shwa
 //
+//     string S; cin >> S;
+//     int K; cin >> K;
 //
+//     int N = S.size();
+//
+//     // Count Real Letters and Special Operators
+//     int letters=0, stars=0, questions=0;
+//     for (char C: S) {
+//         if (C == '*') stars++;
+//         else if (C == '?') questions++;
+//         else letters++;
+//     }
+//
+//     int minLen = letters - stars - questions;
+//     int maxLen = (stars > 0 ? INT_MAX : letters); // Because * Can Make The Letter Repeated ??
+//
+//     // Out Of The Problem Scope
+//     if (K < minLen || K > maxLen) {
+//         cout << "Impossible\n";
+//         return 0;
+//     }
+//
+//     string result;
+//     int extra = K - minLen; // how many chars we still need to add
+//
+//     for (int i = 0; i < N; ++i) {
+//         if (S[i] == '?' || S[i] == '*') continue;
+//
+//         if (i+1 < N && (S[i+1] == '?' || S[i+1] == '*')) {
+//             if (extra) {
+//                 result += S[i];
+//                 extra--;
+//
+//                 // As The * Can Make The Letter be Repeated
+//                 if (N && S[i+1] == '*') {
+//                     while (extra) {
+//                         result += S[i];
+//                         extra--;
+//                     }
+//                 }
+//             }
+//         } else {
+//             result += S[i];
+//         }
+//     }
+//
+//     cout << result << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/N
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    ll n, m, k; cin >> n >> m >> k;
+
+    cout << min({n, k, (n+m)/2}) << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

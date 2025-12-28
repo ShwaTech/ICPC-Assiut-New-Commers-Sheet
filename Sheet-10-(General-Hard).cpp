@@ -565,66 +565,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/O
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-bool IS_Prime (const ll n) {
-    if (n <= 1) return false;
-    if (n == 2) return true;
-    if (n % 2 == 0) return false;
-
-    for (ll i = 3; i * i <= n; i += 2)
-        if (n % i == 0)
-            return false;
-
-    return true;
-}
-
-
-int main()
-{
-    shwa
-
-    ll n; cin >> n;
-    int x; cin >> x;
-
-    vector<ll> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
-
-    vector<int> op(n);
-    for (int i = 0; i < n; i++) cin >> op[i];
-
-    for (ll i = 0; i < n; ++i) {
-        if (op[i] == 1) {
-            if (!IS_Prime(a[i])) {
-                cout << -1 << " ";
-            } else {
-                if (x == 0)
-                    cout << a[i] % 10 << " ";
-                else if (a[i] == 2)
-                    cout << 0 << " ";
-                else
-                    cout << 5 << " ";
-            }
-        } else {
-            if (x == 0)
-                cout << a[i] % 10 << " ";
-            else
-                cout << 0 << " ";
-        }
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/P
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -632,15 +572,96 @@ int main()
 //
 // using namespace std;
 //
+// bool IS_Prime (const ll n) {
+//     if (n <= 1) return false;
+//     if (n == 2) return true;
+//     if (n % 2 == 0) return false;
+//
+//     for (ll i = 3; i * i <= n; i += 2)
+//         if (n % i == 0)
+//             return false;
+//
+//     return true;
+// }
+//
 //
 // int main()
 // {
 //     shwa
 //
+//     ll n; cin >> n;
+//     int x; cin >> x;
 //
+//     vector<ll> a(n);
+//     for (int i = 0; i < n; i++) cin >> a[i];
+//
+//     vector<int> op(n);
+//     for (int i = 0; i < n; i++) cin >> op[i];
+//
+//     for (ll i = 0; i < n; ++i) {
+//         if (op[i] == 1) {
+//             if (!IS_Prime(a[i])) {
+//                 cout << -1 << " ";
+//             } else {
+//                 if (x == 0)
+//                     cout << a[i] % 10 << " ";
+//                 else if (a[i] == 2)
+//                     cout << 0 << " ";
+//                 else
+//                     cout << 5 << " ";
+//             }
+//         } else {
+//             if (x == 0)
+//                 cout << a[i] % 10 << " ";
+//             else
+//                 cout << 0 << " ";
+//         }
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/P
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n; cin >> n;
+
+    vector<pair<ll, ll>> dragon(n);
+
+    for (int i = 0; i < n; ++i)
+        cin >> dragon[i].first >> dragon[i].second;
+
+    // Must Sort => To Fight The Powerful Dragon First as it kills many solders
+    sort(All(dragon), [](auto &x, auto &y) {
+        return (x.first - x.second) > (y.first - y.second);
+    });
+
+    ll cur=0, ans=0;
+    for (auto &x : dragon) {
+        if (cur < x.first) {
+            ans += x.first - cur;
+            cur = x.first;
+        }
+        cur -= x.second;
+    }
+
+    cout << ans << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

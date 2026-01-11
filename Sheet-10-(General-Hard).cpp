@@ -625,6 +625,48 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/P
 
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define All(v) v.begin(),v.end()
+// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//
+// using namespace std;
+//
+//
+// int main()
+// {
+//     shwa
+//
+//     int n; cin >> n;
+//
+//     vector<pair<ll, ll>> dragon(n);
+//
+//     for (int i = 0; i < n; ++i)
+//         cin >> dragon[i].first >> dragon[i].second;
+//
+//     // Must Sort => To Fight The Powerful Dragon First as it kills many solders
+//     sort(All(dragon), [](auto &x, auto &y) {
+//         return (x.first - x.second) > (y.first - y.second);
+//     });
+//
+//     ll cur=0, ans=0;
+//     for (auto &x : dragon) {
+//         if (cur < x.first) {
+//             ans += x.first - cur;
+//             cur = x.first;
+//         }
+//         cur -= x.second;
+//     }
+//
+//     cout << ans << endl;
+//
+//     return 0;
+// }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Q
+
 #include <bits/stdc++.h>
 #define ll long long
 #define All(v) v.begin(),v.end()
@@ -639,50 +681,22 @@ int main()
 
     int n; cin >> n;
 
-    vector<pair<ll, ll>> dragon(n);
+    int c=0, res=0, mx=INT_MIN;
 
-    for (int i = 0; i < n; ++i)
-        cin >> dragon[i].first >> dragon[i].second;
+    while (n--) {
+        int b; cin >> b;
+        c++;
 
-    // Must Sort => To Fight The Powerful Dragon First as it kills many solders
-    sort(All(dragon), [](auto &x, auto &y) {
-        return (x.first - x.second) > (y.first - y.second);
-    });
+        mx = max(mx, b);
 
-    ll cur=0, ans=0;
-    for (auto &x : dragon) {
-        if (cur < x.first) {
-            ans += x.first - cur;
-            cur = x.first;
-        }
-        cur -= x.second;
+        if (mx == c) res++;
     }
 
-    cout << ans << endl;
+    cout << res << endl;
+
 
     return 0;
 }
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Q
-
-// #include <bits/stdc++.h>
-// #define ll long long
-// #define All(v) v.begin(),v.end()
-// #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//
-// using namespace std;
-//
-//
-// int main()
-// {
-//     shwa
-//
-//
-//
-//     return 0;
-// }
 
 // -------------------------------------------------------------------------------------------
 

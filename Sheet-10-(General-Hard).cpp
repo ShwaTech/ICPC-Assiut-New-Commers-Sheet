@@ -702,47 +702,10 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/R
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define RAll(v) v.rbegin(),v.rend()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n, a, b, c; cin >> n >> a >> b >> c;
-
-    // IDEA =>
-    //   n = i*a + j*b + k*c
-    //   k = ( n - i*a - j*b ) / c
-
-    int res=0;
-    for (int i = 0; i <= n; i++) {
-        for (int j = 0; j <= n; j++) {
-            int k = ( n - i*a - j*b ) / c;
-            if (k < 0) k = 0;
-
-            if (n == i*a + j*b + k*c) res = max(res, i+j+k);
-        }
-    }
-
-    cout << res << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/S
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
+// #define RAll(v) v.rbegin(),v.rend()
 // #define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 //
 // using namespace std;
@@ -752,10 +715,63 @@ int main()
 // {
 //     shwa
 //
+//     int n, a, b, c; cin >> n >> a >> b >> c;
 //
+//     // IDEA =>
+//     //   n = i*a + j*b + k*c
+//     //   k = ( n - i*a - j*b ) / c
+//
+//     int res=0;
+//     for (int i = 0; i <= n; i++) {
+//         for (int j = 0; j <= n; j++) {
+//             int k = ( n - i*a - j*b ) / c;
+//             if (k < 0) k = 0;
+//
+//             if (n == i*a + j*b + k*c) res = max(res, i+j+k);
+//         }
+//     }
+//
+//     cout << res << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/S
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, m; cin >> n >> m;
+
+    vector<string> board(n, string(m, ' '));
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < m; ++j)
+            cin >> board[i][j];
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            if (board[i][j] == '.') {
+                if ((i+j) % 2 == 0) cout << 'B';
+                else cout << 'W';
+            }
+            else cout << '-';
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

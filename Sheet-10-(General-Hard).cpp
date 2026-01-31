@@ -740,43 +740,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/S
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n, m; cin >> n >> m;
-
-    vector<string> board(n, string(m, ' '));
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < m; ++j)
-            cin >> board[i][j];
-
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            if (board[i][j] == '.') {
-                if ((i+j) % 2 == 0) cout << 'B';
-                else cout << 'W';
-            }
-            else cout << '-';
-        }
-        cout << endl;
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/T
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -789,10 +752,56 @@ int main()
 // {
 //     shwa
 //
+//     int n, m; cin >> n >> m;
 //
+//     vector<string> board(n, string(m, ' '));
+//     for (int i = 0; i < n; ++i)
+//         for (int j = 0; j < m; ++j)
+//             cin >> board[i][j];
+//
+//     for (int i = 0; i < n; ++i) {
+//         for (int j = 0; j < m; ++j) {
+//             if (board[i][j] == '.') {
+//                 if ((i+j) % 2 == 0) cout << 'B';
+//                 else cout << 'W';
+//             }
+//             else cout << '-';
+//         }
+//         cout << endl;
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/T
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n; cin >> n;
+
+    string circuit="ROYGBIV";
+
+    for (size_t i = 0; i < n-7; ++i) {
+        int sz = circuit.size();
+        circuit.push_back(circuit[sz - 4]);
+    }
+
+    cout << circuit;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

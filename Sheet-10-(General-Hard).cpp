@@ -777,36 +777,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/T
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n; cin >> n;
-
-    string circuit="ROYGBIV";
-
-    for (size_t i = 0; i < n-7; ++i) {
-        int sz = circuit.size();
-        circuit.push_back(circuit[sz - 4]);
-    }
-
-    cout << circuit;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/U
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -819,10 +789,75 @@ int main()
 // {
 //     shwa
 //
+//     int n; cin >> n;
 //
+//     string circuit="ROYGBIV";
+//
+//     for (size_t i = 0; i < n-7; ++i) {
+//         int sz = circuit.size();
+//         circuit.push_back(circuit[sz - 4]);
+//     }
+//
+//     cout << circuit;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/U
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+bool IsSubSeq (string& s, string& t) {
+    int m = s.length();
+    int n = t.length();
+
+    if (m > n) return false;
+
+    int i=0, j=0;
+    while (i < m && j < n) {
+        if (s[i] == t[j])
+            i++;
+        j++;
+    }
+
+    return  i == m;
+}
+
+bool Possible (string& s, string& t, string& p) {
+    vector<int> cnt_s(26), cnt_t(26), cnt_p(26);
+
+    for (auto c : s) cnt_s[c - 'a']++;
+    for (auto c : t) cnt_t[c - 'a']++;
+    for (auto c : p) cnt_p[c - 'a']++;
+
+    for (int i = 0; i < 26; ++i)
+        if (cnt_t[i] > cnt_s[i] + cnt_p[i]) return false;
+    return true;
+}
+
+
+int main()
+{
+    shwa
+
+    int q; cin >> q;
+
+    while (q--) {
+        string s, t, p; cin >> s >> t >> p;
+
+        if (IsSubSeq(s, t) && Possible(s, t, p)) cout << "YES\n";
+        else  cout << "NO\n";
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

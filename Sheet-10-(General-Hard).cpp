@@ -863,39 +863,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/V
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n, k; cin >> n >> k;
-
-    string distinct="";
-    for (int i = 0; i < k; ++i)
-        distinct.push_back('a' + i);
-
-    for (int i = 0; i < k; ++i)
-        cout << char('a' + i);
-
-    for (int i = 0; i < n-k; ++i) {
-        if (i % 2 == 0) cout << 'a';
-        else cout << 'b';
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/W
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -908,10 +875,65 @@ int main()
 // {
 //     shwa
 //
+//     int n, k; cin >> n >> k;
 //
+//     string distinct="";
+//     for (int i = 0; i < k; ++i)
+//         distinct.push_back('a' + i);
+//
+//     for (int i = 0; i < k; ++i)
+//         cout << char('a' + i);
+//
+//     for (int i = 0; i < n-k; ++i) {
+//         if (i % 2 == 0) cout << 'a';
+//         else cout << 'b';
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/W
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n; cin >> n;
+
+    vector<ll> a(n);
+    for (auto& ai: a) cin >> ai;
+
+    vector<ll> LMin(n), RMax(n);
+
+    LMin[0] = a[0];
+    for (int i = 1; i < n; ++i) LMin[i] = min(LMin[i - 1], a[i]);
+
+    RMax[n-1] = a[n-1];
+    for (int i = n-2; i >= 0; --i) RMax[i] = max(RMax[i + 1], a[i]);
+
+    int ans=0, i=0, j=0;
+
+    while (i < n && j < n) {
+        if (LMin[i] <= RMax[j]) {
+            ans = max(ans, j-i);
+            j++;
+        } else { i++; }
+    }
+
+    cout << ans << endl;
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

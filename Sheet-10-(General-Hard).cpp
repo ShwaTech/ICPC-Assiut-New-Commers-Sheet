@@ -939,52 +939,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/X
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main() {
-    shwa
-
-    int n; cin >> n;
-
-    int a; vector<int> c(5);
-    for (int i = 0; i < n; ++i) {
-        cin >> a;
-
-        if (a == 0) { c[0]=1; continue; }
-        if (a == 100) { c[1]=1; continue; }
-        if (a % 10 == 0) { c[2]=a; continue; }
-        if (a < 10) { c[3]=a; continue; }
-
-        c[4]=a;
-    }
-
-    vector<int> ans;
-
-    if (c[0]) ans.push_back(0);
-    if (c[1]) ans.push_back(100);
-    if (c[2]) ans.push_back(c[2]);
-    if (c[3]) ans.push_back(c[3]);
-    if (!c[2] && !c[3] && c[4]) ans.push_back(c[4]);
-
-    cout << ans.size() << endl;
-    for (int i = 0; i < ans.size(); ++i) {
-        cout << ans[i] << " ";
-    }
-
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Y
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -993,14 +947,94 @@ int main() {
 // using namespace std;
 //
 //
-// int main()
-// {
+// int main() {
 //     shwa
 //
+//     int n; cin >> n;
+//
+//     int a; vector<int> c(5);
+//     for (int i = 0; i < n; ++i) {
+//         cin >> a;
+//
+//         if (a == 0) { c[0]=1; continue; }
+//         if (a == 100) { c[1]=1; continue; }
+//         if (a % 10 == 0) { c[2]=a; continue; }
+//         if (a < 10) { c[3]=a; continue; }
+//
+//         c[4]=a;
+//     }
+//
+//     vector<int> ans;
+//
+//     if (c[0]) ans.push_back(0);
+//     if (c[1]) ans.push_back(100);
+//     if (c[2]) ans.push_back(c[2]);
+//     if (c[3]) ans.push_back(c[3]);
+//     if (!c[2] && !c[3] && c[4]) ans.push_back(c[4]);
+//
+//     cout << ans.size() << endl;
+//     for (int i = 0; i < ans.size(); ++i) {
+//         cout << ans[i] << " ";
+//     }
 //
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Y
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main()
+{
+    shwa
+
+    int n, m; cin >> n >> m;
+
+    vector<vector<ll>> matrix(n, vector<ll>(m));
+
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < m; ++j)
+            cin >> matrix[i][j];
+
+    int top=0, bottom=n-1, left=0, right=m-1;
+
+    while (top <= bottom && left <= right) {
+        // Left -> Right
+        for (int j = left; j <= right; j++)
+            cout << matrix[top][j] << ' ';
+        top++;
+
+        // Top -> Bottom
+        for (int i = top; i <= bottom; i++)
+            cout << matrix[i][right] << ' ';
+        right--;
+
+        // Right -> Left
+        if (top <= bottom) {
+            for (int j = right; j >= left; j--)
+                cout << matrix[bottom][j] << ' ';
+            bottom--;
+        }
+
+        // Bottom -> Top
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--)
+                cout << matrix[i][left] << ' ';
+            left++;
+        }
+    }
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 

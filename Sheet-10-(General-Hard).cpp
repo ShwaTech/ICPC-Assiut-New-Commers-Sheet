@@ -985,61 +985,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Y
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n, m; cin >> n >> m;
-
-    vector<vector<ll>> matrix(n, vector<ll>(m));
-
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < m; ++j)
-            cin >> matrix[i][j];
-
-    int top=0, bottom=n-1, left=0, right=m-1;
-
-    while (top <= bottom && left <= right) {
-        // Left -> Right
-        for (int j = left; j <= right; j++)
-            cout << matrix[top][j] << ' ';
-        top++;
-
-        // Top -> Bottom
-        for (int i = top; i <= bottom; i++)
-            cout << matrix[i][right] << ' ';
-        right--;
-
-        // Right -> Left
-        if (top <= bottom) {
-            for (int j = right; j >= left; j--)
-                cout << matrix[bottom][j] << ' ';
-            bottom--;
-        }
-
-        // Bottom -> Top
-        if (left <= right) {
-            for (int i = bottom; i >= top; i--)
-                cout << matrix[i][left] << ' ';
-            left++;
-        }
-    }
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Z
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -1052,9 +997,98 @@ int main()
 // {
 //     shwa
 //
+//     int n, m; cin >> n >> m;
 //
+//     vector<vector<ll>> matrix(n, vector<ll>(m));
+//
+//     for (int i = 0; i < n; ++i)
+//         for (int j = 0; j < m; ++j)
+//             cin >> matrix[i][j];
+//
+//     int top=0, bottom=n-1, left=0, right=m-1;
+//
+//     while (top <= bottom && left <= right) {
+//         // Left -> Right
+//         for (int j = left; j <= right; j++)
+//             cout << matrix[top][j] << ' ';
+//         top++;
+//
+//         // Top -> Bottom
+//         for (int i = top; i <= bottom; i++)
+//             cout << matrix[i][right] << ' ';
+//         right--;
+//
+//         // Right -> Left
+//         if (top <= bottom) {
+//             for (int j = right; j >= left; j--)
+//                 cout << matrix[bottom][j] << ' ';
+//             bottom--;
+//         }
+//
+//         // Bottom -> Top
+//         if (left <= right) {
+//             for (int i = bottom; i >= top; i--)
+//                 cout << matrix[i][left] << ' ';
+//             left++;
+//         }
+//     }
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/Z
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+bool Is_Right(int x1, int y1, int x2, int y2, int x3, int y3) {
+    ll cross =
+        1LL * (x2 - x1) * (y3 - y1) -
+        1LL * (y2 - y1) * (x3 - x1);
+
+    if (cross == 0)
+        return false;
+
+    ll A = 1LL * (x1-x2)*(x1-x2) + 1LL * (y1-y2)*(y1-y2);
+    ll B = 1LL * (x1-x3)*(x1-x3) + 1LL * (y1-y3)*(y1-y3);
+    ll C = 1LL * (x2-x3)*(x2-x3) + 1LL * (y2-y3)*(y2-y3);
+
+    return (A == B+C) || (B == A+C) || (C == A+B);
+}
+
+
+int main()
+{
+    shwa
+
+    int x1, y1, x2, y2, x3, y3;
+    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+
+    vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+
+    if (Is_Right(x1, y1, x2, y2, x3, y3)) { cout << "RIGHT"; return 0; }
+
+    for (auto &[dx, dy] : dirs) {
+        if (Is_Right(x1+dx, y1+dy, x2, y2, x3, y3)) { cout << "ALMOST"; return 0; }
+    }
+
+    for (auto &[dx, dy] : dirs) {
+        if (Is_Right(x1, y1, x2+dx, y2+dy, x3, y3)) { cout << "ALMOST"; return 0; }
+    }
+
+    for (auto &[dx, dy] : dirs) {
+        if (Is_Right(x1, y1, x2, y2, x3+dx, y3+dy)) { cout << "ALMOST"; return 0; }
+    }
+
+    cout << "NEITHER";
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------

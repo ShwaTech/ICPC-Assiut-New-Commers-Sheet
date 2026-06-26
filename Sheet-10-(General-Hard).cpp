@@ -896,49 +896,6 @@
 
 // https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/W
 
-#include <bits/stdc++.h>
-#define ll long long
-#define All(v) v.begin(),v.end()
-#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-int main()
-{
-    shwa
-
-    int n; cin >> n;
-
-    vector<ll> a(n);
-    for (auto& ai: a) cin >> ai;
-
-    vector<ll> LMin(n), RMax(n);
-
-    LMin[0] = a[0];
-    for (int i = 1; i < n; ++i) LMin[i] = min(LMin[i - 1], a[i]);
-
-    RMax[n-1] = a[n-1];
-    for (int i = n-2; i >= 0; --i) RMax[i] = max(RMax[i + 1], a[i]);
-
-    int ans=0, i=0, j=0;
-
-    while (i < n && j < n) {
-        if (LMin[i] <= RMax[j]) {
-            ans = max(ans, j-i);
-            j++;
-        } else { i++; }
-    }
-
-    cout << ans << endl;
-
-    return 0;
-}
-
-// -------------------------------------------------------------------------------------------
-
-// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/X
-
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define All(v) v.begin(),v.end()
@@ -951,10 +908,78 @@ int main()
 // {
 //     shwa
 //
+//     int n; cin >> n;
 //
+//     vector<ll> a(n);
+//     for (auto& ai: a) cin >> ai;
+//
+//     vector<ll> LMin(n), RMax(n);
+//
+//     LMin[0] = a[0];
+//     for (int i = 1; i < n; ++i) LMin[i] = min(LMin[i - 1], a[i]);
+//
+//     RMax[n-1] = a[n-1];
+//     for (int i = n-2; i >= 0; --i) RMax[i] = max(RMax[i + 1], a[i]);
+//
+//     int ans=0, i=0, j=0;
+//
+//     while (i < n && j < n) {
+//         if (LMin[i] <= RMax[j]) {
+//             ans = max(ans, j-i);
+//             j++;
+//         } else { i++; }
+//     }
+//
+//     cout << ans << endl;
 //
 //     return 0;
 // }
+
+// -------------------------------------------------------------------------------------------
+
+// https://codeforces.com/group/MWSDmqGsZm/contest/223340/problem/X
+
+#include <bits/stdc++.h>
+#define ll long long
+#define All(v) v.begin(),v.end()
+#define shwa ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+using namespace std;
+
+
+int main() {
+    shwa
+
+    int n; cin >> n;
+
+    int a; vector<int> c(5);
+    for (int i = 0; i < n; ++i) {
+        cin >> a;
+
+        if (a == 0) { c[0]=1; continue; }
+        if (a == 100) { c[1]=1; continue; }
+        if (a % 10 == 0) { c[2]=a; continue; }
+        if (a < 10) { c[3]=a; continue; }
+
+        c[4]=a;
+    }
+
+    vector<int> ans;
+
+    if (c[0]) ans.push_back(0);
+    if (c[1]) ans.push_back(100);
+    if (c[2]) ans.push_back(c[2]);
+    if (c[3]) ans.push_back(c[3]);
+    if (!c[2] && !c[3] && c[4]) ans.push_back(c[4]);
+
+    cout << ans.size() << endl;
+    for (int i = 0; i < ans.size(); ++i) {
+        cout << ans[i] << " ";
+    }
+
+
+    return 0;
+}
 
 // -------------------------------------------------------------------------------------------
 
